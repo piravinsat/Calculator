@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Calculator.Data;
 using Calculator.Models;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace Calculator.Controllers
 {
@@ -20,9 +21,53 @@ namespace Calculator.Controllers
         }
 
         // GET: Calculators
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index(string searchString)
+        //{
+        //    //LINQ query
+        //    var movies = from m in _context.Movie
+        //        select m;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        //Lambda expression
+        //        movies = movies.Where(s => s.Title.Contains(searchString));
+        //    }
+
+        //    return View(await movies.ToListAsync());
+        //}
+        public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
-            return View(await _context.Movie.ToListAsync());
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Movie
+                orderby m.Genre
+                select m.Genre;
+
+            var movies = from m in _context.Movie
+                select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            var movieGenreVM = new MovieGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Movies = await movies.ToListAsync()
+            };
+
+            return View(movieGenreVM);
+        }
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
         }
 
         // GET: Calculators/Details/5
