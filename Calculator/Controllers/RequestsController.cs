@@ -105,23 +105,5 @@ namespace Calculator.Controllers
         {
             return _context.Request.Any(e => e.Id == id);
         }
-
-        public string GetIp()
-        {
-            string ip = "";
-            if (HttpContext.Connection.RemoteIpAddress != null)
-            {
-                ip = HttpContext.Connection.RemoteIpAddress.ToString();
-            }
-            else
-            {
-                if (HttpContext.Connection.LocalIpAddress != null)
-                {
-                    ip = HttpContext.Connection.LocalIpAddress.ToString();
-                }
-            }
-
-            return ip;
-        }
     }
 }

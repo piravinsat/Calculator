@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Calculator.Data;
+using Calculator.Services;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Calculator.Controllers
@@ -14,17 +16,21 @@ namespace Calculator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IActionContextAccessor _accessor;
+        private readonly IRequestService _requestService;
+        private readonly RequestContext _context;
 
-        public HomeController(ILogger<HomeController> logger, IActionContextAccessor accessor)
+        public HomeController(ILogger<HomeController> logger, IActionContextAccessor accessor, RequestContext context)
         {
             _logger = logger;
             _accessor = accessor;
+            _context = context;
+            _requestService = new RequestService(_context);
         }
 
         public IActionResult Index()
         {
             var ip = _accessor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString();
-            //HttpContext.Connection.RemoteIpAddress.ToString();
+            _requestService.LogRequest(ip);
             return View();
         }
 
