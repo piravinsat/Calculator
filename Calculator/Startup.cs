@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculator.Data;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Calculator
@@ -32,6 +33,9 @@ namespace Calculator
 
             services.AddDbContext<RequestContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RequestContext")));
+
+            //Used to get IP address from client
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

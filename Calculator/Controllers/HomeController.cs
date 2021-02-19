@@ -6,20 +6,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Calculator.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IActionContextAccessor _accessor;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IActionContextAccessor accessor)
         {
             _logger = logger;
+            _accessor = accessor;
         }
 
         public IActionResult Index()
         {
+            var ip = _accessor.ActionContext.HttpContext.Connection.RemoteIpAddress.ToString();
+            //HttpContext.Connection.RemoteIpAddress.ToString();
             return View();
         }
 

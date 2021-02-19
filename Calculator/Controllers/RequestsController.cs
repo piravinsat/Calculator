@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -103,6 +104,24 @@ namespace Calculator.Controllers
         private bool RequestExists(int id)
         {
             return _context.Request.Any(e => e.Id == id);
+        }
+
+        public string GetIp()
+        {
+            string ip = "";
+            if (HttpContext.Connection.RemoteIpAddress != null)
+            {
+                ip = HttpContext.Connection.RemoteIpAddress.ToString();
+            }
+            else
+            {
+                if (HttpContext.Connection.LocalIpAddress != null)
+                {
+                    ip = HttpContext.Connection.LocalIpAddress.ToString();
+                }
+            }
+
+            return ip;
         }
     }
 }
