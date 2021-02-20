@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Calculator.Services
 {
-    interface ICalculatorService
+    public interface ICalculatorService
     {
+        int Add(string numbers);
     }
 }
