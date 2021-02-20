@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Calculator.Services;
 
 namespace Calculator.Tests
@@ -339,6 +338,107 @@ namespace Calculator.Tests
             _service.Multiply("3,5");
             //Assert
             Assert.AreEqual(2, _service.GetMultiplyCalledCount());
+        }
+
+        [Test]
+        public void Divide_EmptyString_ReturnZero()
+        {
+            //Act
+            var result = _service.Divide("");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void Divide_0_ReturnZero()
+        {
+            //Act
+            var result = _service.Divide("0");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void Divide_1_ReturnOne()
+        {
+            //Act
+            var result = _service.Divide("1");
+
+            //Assert
+            Assert.AreEqual(1, result);
+        }
+
+
+        [TestCase("64", 64)]
+        [TestCase("30", 30)]
+        public void Divide_Any_Number_Return(string numbers, int expected)
+        {
+            //Act
+            var result = _service.Divide(numbers);
+
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void Divide_Any_Two_Numbers_Return()
+        {
+            //Act
+            var result = _service.Divide("2,1");
+
+            //Assert
+            Assert.AreEqual(2, result);
+        }
+
+        [Test]
+        public void Divide_Any_Three_Numbers_Return()
+        {
+            //Act
+            var result = _service.Divide("32,2,2");
+
+            //Assert
+            Assert.AreEqual(8, result);
+        }
+
+        [Test]
+        public void Divide_Any_Three_Numbers_Return_Different_Delimiter()
+        {
+            //Act
+            var result = _service.Divide("1\n2,3");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void Divide_Any_Two_Numbers_Return_Multiple_Delimiters()
+        {
+            //Act
+            var result = _service.Divide("//;\n1;2");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void CheckDivideMethodRunOnce()
+        {
+            //Act
+            _service.Divide("1,2");
+            //Assert
+            Assert.AreEqual(1, _service.GetDivideCalledCount());
+        }
+
+        [Test]
+        public void CheckDivideMethodRunTwice()
+        {
+            //Act
+            _service.Divide("1,2");
+            _service.Divide("3,5");
+            //Assert
+            Assert.AreEqual(2, _service.GetDivideCalledCount());
         }
     }
 }
