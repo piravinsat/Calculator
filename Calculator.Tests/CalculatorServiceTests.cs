@@ -77,9 +77,67 @@ namespace Calculator.Tests
         [Test]
         public void Add_Any_Three_Numbers_Return()
         {
+            //Act
             var result = _service.Add("1,2,3");
 
+            //Assert
             Assert.AreEqual(6, result);
         }
+
+        [Test]
+        public void Add_Any_Three_Numbers_Return_Different_Delimiter()
+        {
+            //Act
+            var result = _service.Add("1\n2,3");
+
+            //Assert
+            Assert.AreEqual(6, result);
+        }
+
+        [Test]
+        public void Add_Any_Three_Numbers_Return_Multiple_Delimiters()
+        {
+            //Act
+            var result = _service.Add("//;\n1;2");
+
+            //Assert
+            Assert.AreEqual(3, result);
+        }
+
+        [Test]
+        public void Throw_Exception_When_Negative_Number_Given()
+        {
+            Assert.Throws<NegativeNumberException>(
+                () => { _service.Add("2,-2"); });
+        }
+
+        [Test]
+        public void CheckAddMethodRunOnce()
+        {
+            //Act
+            _service.Add("1,2");
+            //Assert
+            Assert.AreEqual(1, _service.GetCalledCount());
+        }
+
+        [Test]
+        public void CheckAddMethodRunTwice()
+        {
+            //Act
+            _service.Add("1,2");
+            _service.Add("3,5");
+            //Assert
+            Assert.AreEqual(2, _service.GetCalledCount());
+        }
+
+        [Test]
+        public void IgnoreNumbersOverAThousand()
+        {
+            //Act
+           var result = _service.Add("1;1001");
+            //Assert
+            Assert.AreEqual(1, result);
+        }
+
     }
 }
