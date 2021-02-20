@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static System.String;
+﻿using static System.String;
 
 namespace Calculator.Services
 {
@@ -9,11 +6,21 @@ namespace Calculator.Services
     {
         public int Add(string numbers)
         {
+            var count = 0;
             var result = 0;
 
             if (IsNullOrEmpty(numbers))
             {
-                return 0;
+                return result;
+            }
+
+            var listOfNumbers = numbers.Split(',');
+
+            while (count < listOfNumbers.Length)
+            {
+                int.TryParse(listOfNumbers[count], out int num);
+                result += num;
+                count++;
             }
 
             return result;
