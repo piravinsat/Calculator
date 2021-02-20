@@ -95,7 +95,7 @@ namespace Calculator.Tests
         }
 
         [Test]
-        public void Add_Any_Three_Numbers_Return_Multiple_Delimiters()
+        public void Add_Any_Two_Numbers_Return_Multiple_Delimiters()
         {
             //Act
             var result = _service.Add("//;\n1;2");
@@ -117,7 +117,7 @@ namespace Calculator.Tests
             //Act
             _service.Add("1,2");
             //Assert
-            Assert.AreEqual(1, _service.GetCalledCount());
+            Assert.AreEqual(1, _service.GetAddCalledCount());
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace Calculator.Tests
             _service.Add("1,2");
             _service.Add("3,5");
             //Assert
-            Assert.AreEqual(2, _service.GetCalledCount());
+            Assert.AreEqual(2, _service.GetAddCalledCount());
         }
 
         [Test]
@@ -139,5 +139,105 @@ namespace Calculator.Tests
             Assert.AreEqual(1, result);
         }
 
+        [Test]
+        public void Subtract_EmptyString_ReturnZero()
+        {
+            //Act
+            var result = _service.Subtract("");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+
+        [Test]
+        public void Subtract_0_ReturnZero()
+        {
+            //Act
+            var result = _service.Subtract("0");
+
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void Subtract_1_ReturnOne()
+        {
+            //Act
+            var result = _service.Subtract("1");
+
+            //Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [TestCase("99", 99)]
+        [TestCase("66", 66)]
+        public void Subtract_Any_Number_Return(string numbers, int expected)
+        {
+            //Act
+            var result = _service.Subtract(numbers);
+
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void Subtract_Any_Two_Numbers_Return()
+        {
+            //Act
+            var result = _service.Subtract("2,1");
+
+            //Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
+        public void Subtract_Any_Three_Numbers_Return()
+        {
+            //Act
+            var result = _service.Subtract("1,2,3");
+
+            //Assert
+            Assert.AreEqual(-4, result);
+        }
+
+        [Test]
+        public void Subtract_Any_Three_Numbers_Return_Different_Delimiter()
+        {
+            //Act
+            var result = _service.Subtract("1\n2,3");
+
+            //Assert
+            Assert.AreEqual(-4, result);
+        }
+
+        [Test]
+        public void Subtract_Any_Two_Numbers_Return_Multiple_Delimiters()
+        {
+            //Act
+            var result = _service.Subtract("//;\n1;2");
+
+            //Assert
+            Assert.AreEqual(-1, result);
+        }
+        [Test]
+        public void CheckSubtractMethodRunOnce()
+        {
+            //Act
+            _service.Subtract("1,2");
+            _service.Add("1,2");
+            //Assert
+            Assert.AreEqual(1, _service.GetSubtractCalledCount());
+        }
+
+        [Test]
+        public void CheckSubtractMethodRunTwice()
+        {
+            //Act
+            _service.Subtract("1,2");
+            _service.Subtract("3,5");
+            //Assert
+            Assert.AreEqual(2, _service.GetSubtractCalledCount());
+        }
     }
 }

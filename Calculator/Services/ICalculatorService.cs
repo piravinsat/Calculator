@@ -8,6 +8,8 @@ namespace Calculator.Services
     public interface ICalculatorService
     {
         int Add(string numbers);
-        int GetCalledCount();
+        int GetAddCalledCount();
+        int Subtract(string numbers);
+        int GetSubtractCalledCount();
     }
 }
