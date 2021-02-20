@@ -7,6 +7,8 @@ namespace Calculator.Services
     {
         public int AddInvoked;
         public int SubtractInvoked;
+        public int MultiplyInvoked;
+        public int DivideInvoke;
 
         public int Add(string numbers)
         {
@@ -80,6 +82,48 @@ namespace Calculator.Services
         public int GetSubtractCalledCount()
         {
             return SubtractInvoked;
+        }
+
+        public int Multiply(string numbers)
+        {
+            Interlocked.Increment(ref MultiplyInvoked);
+            var result = 0;
+            var count = 0;
+
+            if (IsNullOrEmpty(numbers))
+            {
+                return result;
+            }
+
+            var listOfNumbers = SplitNumbers(numbers);
+
+            while (count < listOfNumbers.Length)
+            {
+                int.TryParse(listOfNumbers[count], out int num);
+
+                HandleNegativeNumbers(num);
+
+                //Ignore numbers bigger than 1000.
+                if (num <= 1000)
+                {
+                    if (count == 0)
+                    {
+                        result = num;
+                    }
+                    else
+                    {
+                        result *= num;
+                    }
+                }
+
+                count++;
+            }
+            return result;
+        }
+
+        public int GetMultiplyCalledCount()
+        {
+            return MultiplyInvoked;
         }
 
         private static string[] SplitNumbers(string numbers)

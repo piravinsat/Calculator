@@ -11,5 +11,7 @@ namespace Calculator.Services
         int GetAddCalledCount();
         int Subtract(string numbers);
         int GetSubtractCalledCount();
+        int Multiply(string numbers);
+        int GetMultiplyCalledCount();
     }
 }
