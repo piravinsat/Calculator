@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Calculator.Services;
 
 namespace Calculator.Tests
 {
@@ -14,6 +15,19 @@ namespace Calculator.Tests
         public void Check_NUNit_Works()
         {
             Assert.Pass();
+        }
+
+        [Test]
+        public void Add_EmptyString_ReturnZero()
+        {
+            //Arrange
+            var service = new CalculatorService();
+
+            //Act
+            var result = service.Add("");
+
+            //Assert
+            Assert.AreEqual(0, result);
         }
     }
 }
