@@ -37,14 +37,47 @@
             </tr>
         </table>
     </p>
-    
+
     <p>String Calculator</p>
-    
-    <form action="api/calculator/add" method="get" enctype="application/x-www-form-urlencoded">
-        <p><label for="add">Add:</label>
-    <input id="numbers" type="text" name="numbers" size="15"
-           maxlength="30" />
-    <input type="submit" name="calculate" value="Calculate" />
-</p>
+
+    <form id="addForm" action="javascript:void(0);" method="get" onsubmit="addItem()">
+        <p>
+            <label for="numbers">Add:</label>
+            <input type="text" id="add-name" size="15"
+                   maxlength="30" />
+            <input type="submit" value="Calculate" />
+        </p>
     </form>
+    
+    <form id="subtractForm" action="javascript:void(0);" method="get" onsubmit="subtractItem()">
+        <p>
+            <label for="numbers">Subtract</label>
+            <input type="text" id="subtract-name" size="15"
+                   maxlength="30" />
+            <input type="submit" value="Calculate" />
+        </p>
+    </form>
+    
+    <form id="multiplyForm" action="javascript:void(0);" method="get" onsubmit="multiplyItem()">
+        <p>
+            <label for="numbers">Multiply</label>
+            <input type="text" id="multiply-name" size="15"
+                   maxlength="30" />
+            <input type="submit" value="Calculate" />
+        </p>
+    </form>
+    
+    <form id="divideForm" action="javascript:void(0);" method="get" onsubmit="divideItem()">
+        <p>
+            <label for="numbers">Divide</label>
+            <input type="text" id="divide-name" size="15"
+                   maxlength="30" />
+            <input type="submit" value="Calculate" />
+        </p>
+    </form>
+
+    <p id="p1">Hello World!</p>
 </div>
+
+
+<script src="js/site.js" asp-append-version="true"></script>

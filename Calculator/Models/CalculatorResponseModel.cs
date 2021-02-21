@@ -8,7 +8,6 @@ namespace Calculator.Models
 {
     public class CalculatorResponseModel
     {
-       // public int Id { get; set; }
         public string Numbers { get; set; }
         public int Result { get; set; }
     }
