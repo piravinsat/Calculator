@@ -16,8 +16,8 @@ namespace Calculator.Controllers
             _service = service;
         }
 
-        //GET: api/Calculator/Add/2,1
-        [HttpGet("Add/{numbers}")]
+        //GET: api/Calculator/add/2,1
+        [HttpGet("add/{numbers}")]
         public async Task<ActionResult<CalculatorResponseModel>> Add(string numbers)
         {
             var result = await _service.AddAsync(numbers);
@@ -25,8 +25,8 @@ namespace Calculator.Controllers
             return result;
         }
 
-        //GET: api/Calculator/Subtract/5,3
-        [HttpGet("Subtract/{numbers}")]
+        //GET: api/Calculator/subtract/5,3
+        [HttpGet("subtract/{numbers}")]
         public async Task<ActionResult<CalculatorResponseModel>> Subtract(string numbers)
         {
             var result = await _service.SubtractAsync(numbers);
@@ -34,8 +34,8 @@ namespace Calculator.Controllers
             return result;
         }
 
-        //GET: api/Calculator/Multiply/5,3
-        [HttpGet("Multiply/{numbers}")]
+        //GET: api/Calculator/multiply/5,3
+        [HttpGet("multiply/{numbers}")]
         public async Task<ActionResult<CalculatorResponseModel>> Multiply(string numbers)
         {
             var result = await _service.MultiplyAsync(numbers);
@@ -43,8 +43,8 @@ namespace Calculator.Controllers
             return result;
         }
 
-        //GET: api/Calculator/Divide/10,2
-        [HttpGet("Divide/{numbers}")]
+        //GET: api/Calculator/divide/10,2
+        [HttpGet("divide/{numbers}")]
         public async Task<ActionResult<CalculatorResponseModel>> Divide(string numbers)
         {
             var result = await _service.DivideAsync(numbers);
