@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculator.Data;
+using Calculator.Services;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,8 @@ namespace Calculator
 
             services.AddDbContext<RequestContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RequestContext")));
+
+            services.AddScoped<ICalculatorService, CalculatorService>();
 
             //Used to get IP address from client
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

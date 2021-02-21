@@ -18,10 +18,12 @@ namespace Calculator.Controllers
         }
 
         //GET: api/Calculator/add/2,1
-        [HttpGet("add/{numbers}")]
-        public async Task<ActionResult<CalculatorResponseModel>> Add(string numbers)
+        //[HttpGet("add/{numbers}")]
+        [HttpGet("{numbers}")]
+        public async Task<ActionResult<CalculatorResponseModel>> Add([FromQuery]string numbers)
         {
             var result = await _service.AddAsync(numbers);
+
 
             return result;
         }
