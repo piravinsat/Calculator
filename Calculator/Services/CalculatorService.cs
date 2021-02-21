@@ -1,4 +1,6 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
+using Calculator.Models;
 using static System.String;
 
 namespace Calculator.Services
@@ -40,6 +42,13 @@ namespace Calculator.Services
             }
 
             return result;
+        }
+
+        public async Task<CalculatorResponseModel> AddAsync(string numbers)
+        {
+            var responseModel = new CalculatorResponseModel {Numbers = numbers, Result = Add(numbers)};
+
+            return responseModel;
         }
 
         public int Subtract(string numbers)
@@ -166,6 +175,27 @@ namespace Calculator.Services
         public int GetDivideCalledCount()
         {
             return DivideInvoked;
+        }
+
+        public async Task<CalculatorResponseModel> SubtractAsync(string numbers)
+        {
+            var responseModel = new CalculatorResponseModel { Numbers = numbers, Result = Subtract(numbers) };
+
+            return responseModel;
+        }
+
+        public async Task<CalculatorResponseModel> MultiplyAsync(string numbers)
+        {
+            var responseModel = new CalculatorResponseModel { Numbers = numbers, Result = Multiply(numbers) };
+
+            return responseModel;
+        }
+
+        public async Task<CalculatorResponseModel> DivideAsync(string numbers)
+        {
+            var responseModel = new CalculatorResponseModel { Numbers = numbers, Result = Divide(numbers) };
+
+            return responseModel;
         }
 
         private static string[] SplitNumbers(string numbers)
