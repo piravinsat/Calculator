@@ -12,7 +12,7 @@ namespace Calculator.Controllers
     {
         private readonly ICalculatorService _service;
 
-        public CalculatorController(CalculatorService service)
+        public CalculatorController(ICalculatorService service)
         {
             _service = service;
         }
