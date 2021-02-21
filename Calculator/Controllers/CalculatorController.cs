@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Calculator.Models;
 using Calculator.Services;

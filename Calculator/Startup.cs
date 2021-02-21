@@ -28,8 +28,8 @@ namespace Calculator
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<MvcMovieContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            //services.AddDbContext<MvcMovieContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
 
             services.AddDbContext<RequestContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RequestContext")));
