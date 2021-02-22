@@ -1,4 +1,4 @@
-﻿// Please see documentation at docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
@@ -31,7 +31,7 @@ function subtractItem() {
         })
         .then(response => response.json())
         .then(data => _display(data))
-        .catch(error => console.error('Unable to add item.', error));
+        .catch(error => console.error('Unable to subtract item.', error));
 }
 
 function multiplyItem() {
@@ -46,7 +46,7 @@ function multiplyItem() {
         })
         .then(response => response.json())
         .then(data => _display(data))
-        .catch(error => console.error('Unable to add item.', error));
+        .catch(error => console.error('Unable to multiply item.', error));
 }
 
 function divideItem() {
@@ -61,7 +61,7 @@ function divideItem() {
         })
         .then(response => response.json())
         .then(data => _display(data))
-        .catch(error => console.error('Unable to add item.', error));
+        .catch(error => console.error('Unable to divide item.', error));
 }
 
 function _display(data) {
