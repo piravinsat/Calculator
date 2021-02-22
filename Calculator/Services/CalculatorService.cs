@@ -33,10 +33,10 @@ namespace Calculator.Services
                 HandleNegativeNumbers(num);
 
                 //Ignore numbers bigger than 1000.
-                if (num <= 1000)
-                {
+                //if (num <= 1000)
+                //{
                     result += num;
-                }
+                //}
 
                 count++;
             }
@@ -71,8 +71,8 @@ namespace Calculator.Services
                 HandleNegativeNumbers(num);
 
                 //Ignore numbers bigger than 1000.
-                if (num <= 1000)
-                {
+               // if (num <= 1000)
+                //{
                     if (count == 0)
                     {
                         result = num;
@@ -81,7 +81,7 @@ namespace Calculator.Services
                     {
                         result -= num;
                     }
-                }
+               // }
 
                 count++;
             }
@@ -113,8 +113,8 @@ namespace Calculator.Services
                 HandleNegativeNumbers(num);
 
                 //Ignore numbers bigger than 1000.
-                if (num <= 1000)
-                {
+                //if (num <= 1000)
+                //{
                     if (count == 0)
                     {
                         result = num;
@@ -123,7 +123,7 @@ namespace Calculator.Services
                     {
                         result *= num;
                     }
-                }
+                //}
 
                 count++;
             }
@@ -155,8 +155,8 @@ namespace Calculator.Services
                 HandleNegativeNumbers(num);
 
                 //Ignore numbers bigger than 1000.
-                if (num <= 1000)
-                {
+                //if (num <= 1000)
+                //{
                     if (count == 0)
                     {
                         result = num;
@@ -165,7 +165,7 @@ namespace Calculator.Services
                     {
                         result /= num;
                     }
-                }
+                //}
 
                 count++;
             }

@@ -5,39 +5,40 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to the Calculator</h1>
     <br/>
-
+    
+    <h3 id="p1">0</h3>
     <table class="center">
             <tr>
                 <td colspan="3"><input type="button" id="ac" onclick="clearItems()" value="AC"></td>
-                <td><input type="button" id="divideButton" onclick="" value="/"></td>
+                <td><input type="button" id="divideButton" onclick="placeOperator(this.value)" value="/"></td>
             </tr>
             <tr>
-                <td><input type="button" id="seven" onclick="" value="7"></td>
-                <td><input type="button" id="eight" onclick="" value="8"></td>
-                <td><input type="button" id="nine" onclick="" value="9"></td>
-                <td><input type="button" id="multiplyButton" onclick="" value="*"></td>
+                <td><input type="button" id="seven" onclick="placeOperand(this.value)" value="7"></td>
+                <td><input type="button" id="eight" onclick="placeOperand(this.value)" value="8"></td>
+                <td><input type="button" id="nine" onclick="placeOperand(this.value)" value="9"></td>
+                <td><input type="button" id="multiplyButton" onclick="placeOperator(this.value)" value="*"></td>
             </tr>
             <tr>
-                <td><input type="button" id="four" onclick="" value="4"></td>
-                <td><input type="button" id="five" onclick="" value="5"></td>
-                <td><input type="button" id="six" onclick="" value="6"></td>
-                <td><input type="button" id="subtractButton" onclick="" value="-"></td>
+                <td><input type="button" id="four" onclick="placeOperand(this.value)" value="4"></td>
+                <td><input type="button" id="five" onclick="placeOperand(this.value)" value="5"></td>
+                <td><input type="button" id="six" onclick="placeOperand(this.value)" value="6"></td>
+                <td><input type="button" id="subtractButton" onclick="placeOperator(this.value)" value="-"></td>
             </tr>
             <tr>
-                <td><input type="button" id="one" onclick="" value="1"></td>
-                <td><input type="button" id="two" onclick="" value="2"></td>
-                <td><input type="button" id="three" onclick="" value="3"></td>
-                <td><input type="button" id="addButton" onclick="" value="+"></td>
+                <td><input type="button" id="one" onclick="placeOperand(this.value)" value="1"></td>
+                <td><input type="button" id="two" onclick="placeOperand(this.value)" value="2"></td>
+                <td><input type="button" id="three" onclick="placeOperand(this.value)" value="3"></td>
+                <td><input type="button" id="addButton" onclick="placeOperator(this.value)" value="+"></td>
             </tr>
             <tr>
-                <td colspan="3"><input type="button" id="zero" onclick="" value="0"></td>
-                <td><input type="button" id="equalsButton" onclick="" value="="></td>
+                <td colspan="3"><input type="button" id="zero" onclick="placeOperand(this.value)" value="0"></td>
+                <td><input type="button" id="equalsButton" onclick="equals()" value="="></td>
             </tr>
         </table>
     <br/>
-    <p>String Calculator</p>
+    <p>String Calculator (API Checker: Separate numbers with a delimiter such as ',')</p>
 
-    <form id="addForm" action="javascript:void(0);" method="get" onsubmit="addItem()">
+    <form id="addForm" action="javascript:void(0);" method="get" onsubmit="addItem('')">
         <p>
             <label for="add-name">Add:</label>
             <input type="text" id="add-name" size="15"
@@ -46,7 +47,7 @@
         </p>
     </form>
     
-    <form id="subtractForm" action="javascript:void(0);" method="get" onsubmit="subtractItem()">
+    <form id="subtractForm" action="javascript:void(0);" method="get" onsubmit="subtractItem('')">
         <p>
             <label for="subtract-name">Subtract:</label>
             <input type="text" id="subtract-name" size="15"
@@ -55,7 +56,7 @@
         </p>
     </form>
     
-    <form id="multiplyForm" action="javascript:void(0);" method="get" onsubmit="multiplyItem()">
+    <form id="multiplyForm" action="javascript:void(0);" method="get" onsubmit="multiplyItem('')">
         <p>
             <label for="multiply-name">Multiply:</label>
             <input type="text" id="multiply-name" size="15"
@@ -64,7 +65,7 @@
         </p>
     </form>
     
-    <form id="divideForm" action="javascript:void(0);" method="get" onsubmit="divideItem()">
+    <form id="divideForm" action="javascript:void(0);" method="get" onsubmit="divideItem('')">
         <p>
             <label for="divide-name">Divide:</label>
             <input type="text" id="divide-name" size="15"
@@ -72,8 +73,6 @@
             <input type="submit" value="Calculate" />
         </p>
     </form>
-
-    <p id="p1">Hello World!</p>
 </div>
 
 <input type="hidden" id="leftOperand" name="leftOperand" value="0">
