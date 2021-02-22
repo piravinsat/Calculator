@@ -5,12 +5,8 @@
 const uri = 'api/calculator';
 
 function addItem(calculation) {
-
-    console.log("Test 2");
-
     if (calculation === "") {
         calculation = document.getElementById('add-name').value;
-        console.log("Calculation in test 2 is: " + calculation);
     }
 
     fetch(uri + '/add/' + calculation, {
@@ -29,7 +25,6 @@ function subtractItem(calculation) {
 
     if (calculation === "") {
         calculation = document.getElementById('subtract-name').value;
-        console.log("Calculation in test 2 is: " + calculation);
     }
 
     fetch(uri + '/subtract/' + calculation, {
@@ -48,7 +43,6 @@ function multiplyItem(calculation) {
 
     if (calculation === "") {
         calculation = document.getElementById('multiply-name').value;
-        console.log("Calculation in test 2 is: " + calculation);
     }
 
     fetch(uri + '/multiply/' + calculation, {
@@ -67,7 +61,6 @@ function divideItem(calculation) {
 
     if (calculation === "") {
         calculation = document.getElementById('divide-name').value;
-        console.log("Calculation in test 2 is: " + calculation);
     }
 
     fetch(uri + '/divide/' + calculation, {
@@ -84,13 +77,13 @@ function divideItem(calculation) {
 
 function _display(data) {
     console.log("Here in display data " + data.result);
-    //document.getElementById("p1").innerHTML = "New text!";
     document.getElementById("p1").innerHTML = data.result;
     document.getElementById('add-name').value = "";
     document.getElementById('subtract-name').value = "";
     document.getElementById('multiply-name').value = "";
     document.getElementById('divide-name').value = "";
     document.getElementById('leftOperand').value = data.result;
+    //document.getElementById('equalsPressed').value = false;
 }
 
 function clearItems() {
@@ -98,13 +91,13 @@ function clearItems() {
     document.getElementById("leftOperand").value = "";
     document.getElementById("operator").value = "";
     document.getElementById("rightOperand").value = "";
+    document.getElementById('equalsPressed').value = false;
 }
 
 function placeOperand(value) {
     var operator = document.getElementById("operator");
     var leftOperand = document.getElementById("leftOperand");
     var rightOperand = document.getElementById("rightOperand");
-
 
     if (operator.value === "") {
         if (leftOperand.value === "0") {
@@ -123,8 +116,6 @@ function placeOperand(value) {
 
         display("right");
     }
-
-    console.log(`THe value is: ${value}`);
 }
 
 function display(operand) {
@@ -138,20 +129,29 @@ function display(operand) {
 function placeOperator(value) {
 
     var operator = document.getElementById("operator").value;
+    var equalsPressed = document.getElementById("equalsPressed").value;
 
-    if (operator !== "") {
-        equals();
+    if (operator !== "" && equalsPressed === "false") {
+        console.log("here");
+        equals(false);
     }
 
+    document.getElementById("equalsPressed").value = false;
     document.getElementById("operator").value = value;
     document.getElementById("rightOperand").value = "0";
 
 }
 
-function equals() {
+function equals(flag) {
     var operator = document.getElementById("operator").value;
     var leftOperand = document.getElementById("leftOperand").value;
     var rightOperand = document.getElementById("rightOperand").value;
+
+    if (flag === true) {
+        document.getElementById("equalsPressed").value = true;
+    } else {
+        document.getElementById("equalsPressed").value = false;
+    }
 
     if (operator === "+") {
         addItem(leftOperand + "," + rightOperand);
@@ -162,6 +162,6 @@ function equals() {
         divideItem(leftOperand + "," + rightOperand);
     }
     else if (operator === "*") {
-        multiplyItem(leftOperand + "*" + rightOperand);
+        multiplyItem(leftOperand + "," + rightOperand);
     }
 }

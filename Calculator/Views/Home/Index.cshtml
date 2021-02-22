@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td colspan="3"><input type="button" id="zero" onclick="placeOperand(this.value)" value="0"></td>
-                <td><input type="button" id="equalsButton" onclick="equals()" value="="></td>
+                <td><input type="button" id="equalsButton" onclick="equals(true)" value="="></td>
             </tr>
         </table>
     <br/>
@@ -78,5 +78,6 @@
 <input type="hidden" id="leftOperand" name="leftOperand" value="0">
 <input type="hidden" id="operator" name="operator" value="">
 <input type="hidden" id="rightOperand" name="rightOperand" value="">
+<input type="hidden" id="equalsPressed" name="equalsPressed" value=false />
 
 <script src="js/site.js" asp-append-version="true"></script>
