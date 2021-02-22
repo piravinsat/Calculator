@@ -72,3 +72,10 @@ function _display(data) {
     document.getElementById('multiply-name').value = "";
     document.getElementById('divide-name').value = "";
 }
+
+function clearItems() {
+    document.getElementById("p1").innerHTML = "";
+    document.getElementById("leftOperand").value = "";
+    document.getElementById("operator").value = "";
+    document.getElementById("rightOperand").value = "";
+}

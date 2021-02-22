@@ -4,38 +4,37 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Calculator</h1>
+    <br/>
 
-    <p>
-        <table>
+    <table class="center">
             <tr>
-                <td colspan="3"><button>AC</button></td>
-                <td><button>/</button></td>
+                <td colspan="3"><input type="button" id="ac" onclick="clearItems()" value="AC"></td>
+                <td><input type="button" id="divideButton" onclick="" value="/"></td>
             </tr>
             <tr>
-                <td><button>7</button></td>
-                <td><button>8</button></td>
-                <td><button>9</button></td>
-                <td><button>*</button></td>
+                <td><input type="button" id="seven" onclick="" value="7"></td>
+                <td><input type="button" id="eight" onclick="" value="8"></td>
+                <td><input type="button" id="nine" onclick="" value="9"></td>
+                <td><input type="button" id="multiplyButton" onclick="" value="*"></td>
             </tr>
             <tr>
-                <td><button>4</button></td>
-                <td><button>5</button></td>
-                <td><button>6</button></td>
-                <td><button>-</button></td>
+                <td><input type="button" id="seven" onclick="" value="4"></td>
+                <td><input type="button" id="eight" onclick="" value="5"></td>
+                <td><input type="button" id="nine" onclick="" value="6"></td>
+                <td><input type="button" id="subtractButton" onclick="" value="-"></td>
             </tr>
             <tr>
-                <td><button>1</button></td>
-                <td><button>2</button></td>
-                <td><button>3</button></td>
-                <td><button>+</button></td>
+                <td><input type="button" id="one" onclick="" value="1"></td>
+                <td><input type="button" id="two" onclick="" value="2"></td>
+                <td><input type="button" id="three" onclick="" value="3"></td>
+                <td><input type="button" id="addButton" onclick="" value="+"></td>
             </tr>
             <tr>
-                <td colspan="3"><button>0</button></td>
-                <td><button>=</button></td>
+                <td colspan="3"><input type="button" id="zero" onclick="" value="0"></td>
+                <td><input type="button" id="equalsButton" onclick="" value="="></td>
             </tr>
         </table>
-    </p>
-
+    <br/>
     <p>String Calculator</p>
 
     <form id="addForm" action="javascript:void(0);" method="get" onsubmit="addItem()">
